@@ -1,5 +1,4 @@
 import java.util.Date;
-import java.util.List;
 
 public class EjemploOrdenes {
     public static void main(String[] args) {
@@ -39,28 +38,26 @@ public class EjemploOrdenes {
         orden3.addProducto(producto3);
         orden3.addProducto(producto4);
 
-        System.out.println(orden1);
-        System.out.println(orden2);
-        System.out.println(orden3);
+        imprimirOrden(orden1);
+        imprimirOrden(orden2);
+        imprimirOrden(orden3);
 
-
-        public static void imprimirOrden (Orden orden){
+    }
+        public static void imprimirOrden(OrdenCompra orden) {
+            System.out.println("Identificador: " + orden.getIdentificador());
+            System.out.println("Descripción: " + orden.getDescripcion());
+            System.out.println("Fecha: " + orden.getFecha());
             System.out.println("Cliente: " + orden.getCliente().getNombre() + " " + orden.getCliente().getApellido());
-            System.out.println("Valor: " + orden.getValor());
-            System.out.println("Productos:");
-
-            List<Productos> productos = orden.getProductos();
-            double total = 0.0;
-
-            for (Productos producto : productos) {
-                total += producto.getPrecio();
-                System.out.println(producto.getFabricante() + " " + producto.getNombre() + " " + producto.getPrecio());
+            System.out.println("Productos: ");
+            for (Productos p : orden.getProductos()) {
+                if (p != null) {
+                    System.out.println("\t" + p.getNombre() + " - " + p.getFabricante() + " - $" + p.getPrecio());
+                }
             }
-
-            System.out.println("Total: " + total);
+            System.out.println("Gran Total: $" + orden.getGranTotal());
             System.out.println();
         }
+
     }
-}
-}
+
 
